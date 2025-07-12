@@ -236,7 +236,7 @@ This project prioritizes user safety through:
 **Contact**: GitHub Repository - https://github.com/Peter6188/HealthLLM-Chatbot-MVP-Project  
 
 **Technology Resources:**
-- [Ollama Documentation](https://ollama.com/docs)
+- [Ollama Documentation](https://github.com/ollama/ollama/blob/main/README.md)
 - [AnythingLLM Documentation](https://docs.anythingllm.com)
 - [Llama3 Model Information](https://ollama.com/library/llama3)
 
