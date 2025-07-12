@@ -1,7 +1,7 @@
 # HealthLLM Chatbot MVP Project
 
 ## Brief Project Overview
-The Migraine Symptom Self-Assessment Chatbot is an educational tool built using **Ollama + AnythingLLM** stack with the **Llama3 model** to help users in Halifax, Nova Scotia, and across Canada recognize typical migraine symptoms and understand when to seek medical care. Based on Canadian health authority guidelines, this chatbot provides structured symptom assessment and educational information while maintaining strict ethical boundaries.
+The Migraine Symptom Self-Assessment Chatbot is an educational tool built using **Ollama + AnythingLLM** stack with the **Llama3 model** to help users recognize typical migraine symptoms and understand when to seek medical care. Based on Canadian health authority guidelines, this chatbot provides structured symptom assessment and educational information while maintaining strict ethical boundaries.
 
 **⚠️ IMPORTANT: This chatbot is for EDUCATIONAL PURPOSES ONLY and does NOT provide medical diagnoses.**
 
