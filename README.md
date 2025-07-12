@@ -51,18 +51,18 @@ The Migraine Symptom Self-Assessment Chatbot is an educational tool built using 
 #### 1. Install Ollama
 **On macOS:**
 ```bash
-# Download and install from https://ollama.ai
+# Download and install from https://ollama.com
 # Or using Homebrew:
 brew install ollama
 ```
 
 **On Linux:**
 ```bash
-curl -fsSL https://ollama.ai/install.sh | sh
+curl -fsSL https://ollama.com/install.sh | sh
 ```
 
 **On Windows:**
-- Download the Windows installer from https://ollama.ai
+- Download the Windows installer from https://ollama.com
 - Run the installer and follow the setup wizard
 
 #### 2. Download and Set Up Llama3 Model
@@ -236,9 +236,9 @@ This project prioritizes user safety through:
 **Contact**: GitHub Repository - https://github.com/Peter6188/HealthLLM-Chatbot-MVP-Project  
 
 **Technology Resources:**
-- [Ollama Documentation](https://ollama.ai/docs)
+- [Ollama Documentation](https://ollama.com/docs)
 - [AnythingLLM Documentation](https://docs.anythingllm.com)
-- [Llama3 Model Information](https://ollama.ai/library/llama3)
+- [Llama3 Model Information](https://ollama.com/library/llama3)
 
 **Acknowledgments**: 
 - Canadian Headache Society for evidence-based guidelines
