@@ -1,16 +1,19 @@
 # HealthLLM Chatbot MVP Project
 
 ## Brief Project Overview
-The HealthLLM Chatbot is an evidence-based health data analytics tool designed to provide accessible support for individuals experiencing headaches and migraines. Built on Canadian medical guidelines and reputable health resources, this chatbot offers structured symptom assessment, educational information, and appropriate healthcare guidance while maintaining strict ethical and safety standards.
+The Migraine Symptom Self-Assessment Chatbot is an educational tool built using **Ollama + AnythingLLM** stack with the **Llama3 model** to help users in Halifax, Nova Scotia, and across Canada recognize typical migraine symptoms and understand when to seek medical care. Based on Canadian health authority guidelines, this chatbot provides structured symptom assessment and educational information while maintaining strict ethical boundaries.
+
+**⚠️ IMPORTANT: This chatbot is for EDUCATIONAL PURPOSES ONLY and does NOT provide medical diagnoses.**
 
 **Key Features:**
-- 24/7 accessible symptom assessment
 - Evidence-based information from Canadian Headache Society guidelines
 - Red flag symptom detection for emergency situations
-- Self-care and prevention education
-- Appropriate healthcare provider referrals
+- Educational migraine self-assessment support
+- Crisis detection and emergency response protocols
+- Canadian health resource referrals
 
-**Target Users:** Adults experiencing headaches/migraines, caregivers, and individuals seeking reliable health information between medical appointments.
+**Technology Stack:** Ollama (Local LLM) + AnythingLLM (RAG Frontend) + Llama3 Model  
+**Target Users:** Adults experiencing headaches seeking educational migraine information
 
 ## Project Structure
 ```
@@ -23,86 +26,154 @@ The HealthLLM Chatbot is an evidence-based health data analytics tool designed t
 ├─ prompt/                   # Chatbot prompts and conversation templates
 │  └─ system_prompt.md       # Core system prompt with role, scope, and ethics
 ├─ documentation/            # Project documentation and use cases
-│  ├─ scenario_pack.pdf      # Provided scenario pack
-│  ├─ use_case_description.pdf # Original use case descriptions
-│  └─ use_case_description.md  # Detailed use case analysis
+│  ├─ healthllm_chatbot_mvp_project.md   # Project requirements and instructions
+│  ├─ migraine_scenario_pack.md          # Scenario pack with test questions
+│  └─ use_case_description.md            # Detailed use case analysis
 ├─ demo/                     # Demo files and examples
+│  ├─ demo_video.mp4         # (To be created) - Demonstration video
+│  └─ chat_transcript.txt    # (To be created) - Test conversation transcripts
 └─ README.md                 # This file
 ```
 
 ## Local Deployment/Testing Instructions
 
 ### Prerequisites
-- Python 3.8 or higher
-- Git
-- Text editor or IDE (VS Code recommended)
+- **Operating System**: macOS, Linux, or Windows
+- **Hardware**: Minimum 8GB RAM (16GB recommended for Llama3)
+- **Storage**: At least 4GB free space for Llama3 model
+- **Internet**: Required for initial downloads
 
 ### Setup Steps
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/Peter6188/HealthLLM-Chatbot-MVP-Project.git
-   cd HealthLLM-Chatbot-MVP-Project
-   ```
 
-2. **Set Up Virtual Environment** (Recommended)
-   ```bash
-   python -m venv healthllm_env
-   
-   # On macOS/Linux:
-   source healthllm_env/bin/activate
-   
-   # On Windows:
-   healthllm_env\Scripts\activate
-   ```
+#### 1. Install Ollama
+**On macOS:**
+```bash
+# Download and install from https://ollama.ai
+# Or using Homebrew:
+brew install ollama
+```
 
-3. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt  # (To be created based on chosen framework)
-   ```
+**On Linux:**
+```bash
+curl -fsSL https://ollama.ai/install.sh | sh
+```
 
-4. **Review Configuration**
-   - Review `prompt/system_prompt.md` for chatbot behavior settings
-   - Ensure all knowledge base files are present in `knowledge_base/` folder
-   - Check documentation for use case requirements
+**On Windows:**
+- Download the Windows installer from https://ollama.ai
+- Run the installer and follow the setup wizard
 
-5. **Testing the Chatbot** (Framework dependent)
-   ```bash
-   # Example commands (will vary based on implementation)
-   python main.py                    # For standalone Python implementation
-   streamlit run app.py             # For Streamlit web app
-   jupyter notebook demo.ipynb      # For Jupyter notebook demo
-   ```
+#### 2. Download and Set Up Llama3 Model
+```bash
+# Start Ollama service (if not already running)
+ollama serve
 
-### Development Testing
-- **Knowledge Base Testing**: Verify all `.md` files in `knowledge_base/` are accessible
-- **Prompt Testing**: Test system prompt effectiveness with sample queries
-- **Safety Testing**: Ensure red flag symptoms trigger appropriate warnings
-- **Edge Case Testing**: Test with various symptom combinations and edge cases
+# In a new terminal, pull the Llama3 model
+ollama pull llama3
 
-### Deployment Notes
-- Ensure all sensitive information is properly secured
-- Review medical disclaimers before public deployment
-- Consider implementing rate limiting for production use
-- Set up proper logging for monitoring and improvement
+# Verify the model is installed
+ollama list
+```
+
+#### 3. Install AnythingLLM
+**Option A: Desktop Application (Recommended)**
+- Download AnythingLLM desktop app from https://anythingllm.com
+- Install and launch the application
+
+**Option B: Docker Installation**
+```bash
+# Pull and run AnythingLLM with Docker
+docker pull mintplexlabs/anythingllm
+docker run -d -p 3001:3001 --name anythingllm mintplexlabs/anythingllm
+```
+
+#### 4. Configure AnythingLLM with Ollama
+1. **Open AnythingLLM** in your browser (usually http://localhost:3001)
+2. **Set up LLM Provider:**
+   - Go to Settings > LLM Preference
+   - Select "Ollama" as your provider
+   - Set base URL to `http://localhost:11434`
+   - Select "llama3" as your model
+3. **Test Connection:** Verify Ollama connection is successful
+
+#### 5. Upload Knowledge Base to AnythingLLM
+1. **Create a Workspace** in AnythingLLM called "Migraine Assessment"
+2. **Upload Documents:**
+   - Navigate to your workspace
+   - Upload all files from the `knowledge_base/` folder:
+     - `canadian_headache_society_migraine_guidelines.md`
+     - `choosing_wisely_headache_pain_reliever_pamphlet.md`
+     - `headache_self_care_tips_health_canada.md`
+     - `migraine_canada_patient_education_kit.md`
+3. **Wait for Processing:** Allow AnythingLLM to process and index the documents
+
+#### 6. Configure System Prompt
+1. **In your AnythingLLM workspace**, go to Settings
+2. **Copy the content** from `prompt/system_prompt.md`
+3. **Paste into System Prompt** field in AnythingLLM
+4. **Save the configuration**
+
+### Testing the Chatbot
+
+#### Core Test Questions (From Scenario Pack)
+Test your chatbot with these specific questions:
+1. **"I get one-sided headaches with light sensitivity—is this a migraine?"**
+2. **"What can I do to prevent migraine attacks at home?"**
+
+#### Additional Test Scenarios
+- Test red flag symptom detection (emergency situations)
+- Verify appropriate disclaimers in responses
+- Check crisis response protocols
+- Test knowledge base retrieval accuracy
+
+### Troubleshooting
+
+#### Common Issues:
+1. **Ollama not responding:**
+   - Ensure Ollama service is running: `ollama serve`
+   - Check if Llama3 model is installed: `ollama list`
+
+2. **AnythingLLM can't connect to Ollama:**
+   - Verify Ollama is running on port 11434
+   - Check firewall settings
+   - Ensure correct URL: `http://localhost:11434`
+
+3. **Knowledge base not working:**
+   - Verify documents are properly uploaded and processed
+   - Check document format compatibility (Markdown/PDF/TXT)
+   - Allow time for indexing to complete
+
+### Performance Notes
+- **Llama3 Model**: Requires significant computational resources
+- **Response Time**: May be slower than cloud-based solutions
+- **Privacy**: All processing happens locally on your machine
+- **Resource Usage**: Monitor CPU and memory usage during operation
 
 ## Documentation
-- `documentation/scenario_pack.pdf` - Provided scenario pack
-- `documentation/use_case_description.pdf` - Original use case descriptions  
+- `documentation/healthllm_chatbot_mvp_project.md` - Complete project requirements and instructions
+- `documentation/migraine_scenario_pack.md` - Scenario pack with core test questions
 - `documentation/use_case_description.md` - Detailed use case analysis with user pain points and success criteria
 - `prompt/system_prompt.md` - Complete system prompt defining chatbot role, scope, and ethical guidelines
 
 ## Key Resources
+- **Technology Stack**: Ollama + AnythingLLM + Llama3 Model
 - **Knowledge Base**: Evidence-based medical information from Canadian health organizations
-- **System Prompt**: Comprehensive guidelines for chatbot behavior and limitations
-- **Use Cases**: Detailed user personas and success metrics for development guidance
+- **System Prompt**: Comprehensive guidelines for chatbot behavior and safety protocols
+- **Test Scenarios**: Specific questions for validation and demonstration
 
 ## Safety & Ethics
 This project prioritizes user safety through:
-- Clear medical disclaimers and limitations
-- Red flag symptom detection (SNOOPPPP criteria)
-- Mandatory emergency referrals when appropriate
-- Evidence-based information from reputable medical sources
-- Regular content updates based on current medical guidelines
+- **Prominent "Not Medical Diagnosis" disclaimer** in all responses
+- **Red flag symptom detection** with immediate emergency care direction
+- **Crisis response protocols** for self-harm and violence detection
+- **Evidence-based information** from Canadian health authorities only
+- **Academic use only** - not for clinical deployment
+- **Privacy protection** - no storage of personal health information
+
+## ⚠️ IMPORTANT DISCLAIMERS
+- **FOR EDUCATIONAL PURPOSES ONLY** - This chatbot does NOT provide medical diagnoses
+- **NOT FOR CLINICAL USE** - Academic project only, not for real medical deployment
+- **EMERGENCY SITUATIONS** - Always seek immediate medical care for serious symptoms
+- **LOCAL PROCESSING** - All data stays on your local machine for privacy
 
 ## Development
 ### Contributing
@@ -112,34 +183,52 @@ This project prioritizes user safety through:
 - Update documentation when adding new features or knowledge base content
 
 ### Development Roadmap
-- [ ] Implement core chatbot framework
-- [ ] Integrate knowledge base with conversation logic
-- [ ] Add symptom assessment questionnaire
-- [ ] Implement red flag detection system
-- [ ] Create web interface for user interaction
-- [ ] Add comprehensive testing suite
-- [ ] Implement usage analytics and feedback collection
+- [x] Set up project structure and documentation
+- [x] Create comprehensive system prompt with safety protocols
+- [x] Curate Canadian health authority knowledge base
+- [x] Document use cases and test scenarios
+- [ ] **Complete Ollama + AnythingLLM integration**
+- [ ] **Test with core scenario questions**
+- [ ] **Create demonstration video (max 2 minutes)**
+- [ ] **Document chat transcripts from testing**
+- [ ] **Prepare 5-minute presentation**
 
-### Code Standards
-- Follow PEP 8 for Python code formatting
-- Include comprehensive docstrings for all functions
-- Implement proper error handling and logging
-- Ensure HIPAA compliance for any user data handling
+### Testing Requirements (Academic)
+- Test both core scenario questions from migraine_scenario_pack.md
+- Document chat transcripts for evaluation
+- Create video demonstration showing chatbot responses
+- Verify red flag symptom detection works correctly
+- Ensure all safety disclaimers appear in responses
+
+### Technology Notes
+- **Local Processing**: All LLM inference happens on your machine
+- **No Internet Required**: After setup, chatbot works offline
+- **Resource Intensive**: Llama3 requires significant CPU/memory
+- **Privacy First**: No user data sent to external services
 
 ---
 
 ## Project Information
+**Project**: Migraine Symptom Self-Assessment Chatbot MVP  
+**Technology Stack**: Ollama + AnythingLLM + Llama3 Model  
 **Author(s)**: Peter6188 (GitHub), HealthLLM Development Team  
 **Institution**: 15 5893 Health Data Analytics Course  
 **Project Start Date**: July 7, 2025  
-**Last Updated**: July 7, 2025  
+**Last Updated**: July 11, 2025  
 **Version**: 1.0 (MVP)  
-**License**: [To be determined - consider medical software licensing requirements]
+**Purpose**: Academic research and educational use only  
 
 **Contact**: GitHub Repository - https://github.com/Peter6188/HealthLLM-Chatbot-MVP-Project  
+
+**Technology Resources:**
+- [Ollama Documentation](https://ollama.ai/docs)
+- [AnythingLLM Documentation](https://docs.anythingllm.com)
+- [Llama3 Model Information](https://ollama.ai/library/llama3)
 
 **Acknowledgments**: 
 - Canadian Headache Society for evidence-based guidelines
 - Health Canada for public health resources
 - Migraine Canada for patient education materials
 - Choosing Wisely Canada for evidence-based recommendations
+- Ollama team for local LLM infrastructure
+- AnythingLLM team for RAG frontend platform
