@@ -22,7 +22,9 @@ The Migraine Symptom Self-Assessment Chatbot is an educational tool built using 
 │  ├─ canadian_headache_society_migraine_guidelines.md
 │  ├─ choosing_wisely_headache_pain_reliever_pamphlet.md
 │  ├─ headache_self_care_tips_health_canada.md
-│  └─ migraine_canada_patient_education_kit.md
+│  ├─ migraine_canada_patient_education_kit.md
+│  ├─ q1_migraine_symptoms_with_sources.md    # Test results for core question 1
+│  └─ q2_migraine_prevention_home_with_sources.md  # Test results for core question 2
 ├─ prompt/                   # Chatbot prompts and conversation templates
 │  └─ system_prompt.md       # Core system prompt with role, scope, and ethics
 ├─ documentation/            # Project documentation and use cases
@@ -30,8 +32,9 @@ The Migraine Symptom Self-Assessment Chatbot is an educational tool built using 
 │  ├─ migraine_scenario_pack.md          # Scenario pack with test questions
 │  └─ use_case_description.md            # Detailed use case analysis
 ├─ demo/                     # Demo files and examples
-│  ├─ demo_video.mp4         # (To be created) - Demonstration video
-│  └─ chat_transcript.txt    # (To be created) - Test conversation transcripts
+│  ├─ Chat_Conscripts_Before_System_Prompt_RAG.txt  # Before implementation
+│  ├─ Chat_Conscripts_After_System_Prompt_RAG.txt   # After implementation
+│  └─ Demo_Video.mp4         # Demonstration video showing functionality
 └─ README.md                 # This file
 ```
 
@@ -104,6 +107,8 @@ docker run -d -p 3001:3001 --name anythingllm mintplexlabs/anythingllm
      - `choosing_wisely_headache_pain_reliever_pamphlet.md`
      - `headache_self_care_tips_health_canada.md`
      - `migraine_canada_patient_education_kit.md`
+     - `q1_migraine_symptoms_with_sources.md` (test validation file)
+     - `q2_migraine_prevention_home_with_sources.md` (test validation file)
 3. **Wait for Processing:** Allow AnythingLLM to process and index the documents
 
 #### 6. Configure System Prompt
@@ -156,9 +161,19 @@ Test your chatbot with these specific questions:
 
 ## Key Resources
 - **Technology Stack**: Ollama + AnythingLLM + Llama3 Model
-- **Knowledge Base**: Evidence-based medical information from Canadian health organizations
+- **Knowledge Base**: Evidence-based medical information from Canadian health organizations + validated test results
 - **System Prompt**: Comprehensive guidelines for chatbot behavior and safety protocols
 - **Test Scenarios**: Specific questions for validation and demonstration
+- **Test Results**: Documented responses showing successful implementation of core functionality
+
+### Knowledge Base Files
+The chatbot uses evidence-based information from these Canadian health authority sources:
+- **Canadian Headache Society Guidelines**: Official migraine diagnostic and treatment guidelines
+- **Choosing Wisely Canada**: Evidence-based headache pain reliever recommendations  
+- **Health Canada Self-Care Tips**: Official government guidance for headache management
+- **Migraine Canada Education Kit**: Comprehensive patient education materials
+- **Q1 Test Results**: Validated responses for "one-sided headaches with light sensitivity" question
+- **Q2 Test Results**: Validated responses for "migraine prevention at home" question
 
 ## Safety & Ethics
 This project prioritizes user safety through:
@@ -214,8 +229,8 @@ This project prioritizes user safety through:
 **Author(s)**: Peter6188 (GitHub), HealthLLM Development Team  
 **Institution**: 15 5893 Health Data Analytics Course  
 **Project Start Date**: July 7, 2025  
-**Last Updated**: July 11, 2025  
-**Version**: 1.0 (MVP)  
+**Last Updated**: July 12, 2025  
+**Version**: 1.1 (MVP with Test Validation)  
 **Purpose**: Academic research and educational use only  
 
 **Contact**: GitHub Repository - https://github.com/Peter6188/HealthLLM-Chatbot-MVP-Project  
