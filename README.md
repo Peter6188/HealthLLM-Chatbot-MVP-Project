@@ -187,10 +187,10 @@ This project prioritizes user safety through:
 - [x] Create comprehensive system prompt with safety protocols
 - [x] Curate Canadian health authority knowledge base
 - [x] Document use cases and test scenarios
-- [ ] **Complete Ollama + AnythingLLM integration**
-- [ ] **Test with core scenario questions**
-- [ ] **Create demonstration video (max 2 minutes)**
-- [ ] **Document chat transcripts from testing**
+- [x] **Complete Ollama + AnythingLLM integration**
+- [x] **Test with core scenario questions**
+- [x] **Create demonstration video (max 2 minutes)**
+- [x] **Document chat transcripts from testing**
 - [ ] **Prepare 5-minute presentation**
 
 ### Testing Requirements (Academic)
